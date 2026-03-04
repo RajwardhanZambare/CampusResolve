@@ -1,0 +1,67 @@
+.post{
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-radius: 1rem;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 4px;
+    gap: 1rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-shadow: var(--shadow);
+    width: 99%;
+}
+.user-info{
+    display: flex;
+    gap: 1rem;
+    padding-left: 6px;
+}
+.user-info img{
+    height: 13%;
+    width: 13%;
+    border-radius: 50%;
+}
+.post-info{
+    padding-left: 13px;
+}
+.post-div{
+    width: 100%;
+}
+.post-div img{
+    width: 95%;
+    padding-top: 15px;
+    border-radius: 2rem;
+    object-fit: cover;
+}
+.post-stats{
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 1rem;
+    width: 100%;
+}
+.upvote, .comment, .download{
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.upvote svg, .comment svg, .download svg, .resolve svg, .delete svg{
+    width: 2.2rem;
+    height: 2.2rem;
+    color: var(--text-primary);
+}
+.comment{
+    gap: 5px;
+}
+.post-stats button{
+    background-color: var(--card-bg);
+    border: none;
+}
+.resolved-post {
+    background-color: #28a745;
+    border: 2px solid #28a745;
+}

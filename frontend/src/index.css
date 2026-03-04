@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+
+
+/*Look 1*/
+/* Light Mode */
+/* :root {
+    --bg-color: #F5F7FA;
+    --card-bg: #FFFFFF;
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --border-color: #2b2d32;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+} */
+
+/* Dark Mode */
+/* body.dark {
+    --bg-color: #0F172A;
+    --card-bg: #1E293B;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --border-color: #334155;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}  */
+
+/*Look 2*/
+/* Light Mode */
+/* :root {
+  --bg-color: #FAFAFA;
+  --card-bg: #FFFFFF;
+  --primary-color: #3B82F6;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --border-color: #2b2d32;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+} */
+
+/* Dark Mode */
+/* body.dark {
+  --bg-color: #0B1120;
+  --card-bg: #111827;
+  --primary-color: #60A5FA;
+  --text-primary: #E2E8F0;
+  --text-secondary: #94A3B8;
+  --border-color: #334155;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+} */
+
+
+
+
+/*Look 3*/
+/* Light Mode */
+:root {
+  --bg-color: #F4F1EE;
+  --card-bg: #f0eae3;
+  --primary-color: #3A7D44;
+  --text-primary: #2B2B2B;
+  --text-secondary: #5E5E5E;
+  --border-color: #D6C3B3;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+/* Dark Mode */
+body.dark {
+  --bg-color: #1E1E1E;
+  --card-bg: #2A2A2A;
+  --primary-color: #4CAF50;
+  --text-primary: #F5F5F5;
+  --text-secondary: #BDBDBD;
+  --border-color: #3A3A3A;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+.resolved-post{
+    --card-bg: #28a745;
+}

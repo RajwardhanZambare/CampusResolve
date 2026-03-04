@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "campus issues reporting app",
+  "license": "ISC",
+  "author": "Rajwardhan Zambare",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file=.env server.js"
+  },
+  "dependencies": {
+    "@imagekit/nodejs": "^7.3.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mongoose": "^9.2.1",
+    "multer": "^2.0.2"
+  }
+}

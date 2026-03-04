@@ -1,0 +1,75 @@
+import React from 'react'
+import '../css/Login.css'
+import { useNavigate, Link } from 'react-router-dom'
+import CreateAccount from './CreateAccount'
+import { useState } from 'react'
+import axios from 'axios'
+
+const Login = () => {
+    const navigate = useNavigate()
+
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    async function handleLogin(e){
+        e.preventDefault()
+
+        const response = await axios.post('http://localhost:3000/login', {
+            username: username,
+            password: password
+        })
+        // console.log(response.data)
+        localStorage.setItem("username", response.data.username)
+
+        navigate('/')
+    }
+
+    return (
+        <div className='login-container'>
+            <div className="login-div">
+                <div className='login-heading'>
+                    <h1>Login</h1>
+                </div>
+                <form onSubmit={(e) => {
+                    handleLogin(e)
+                }}>
+                    <div className="input-area">
+                        <input className='username-input' type='text' required placeholder='Enter your username' value={username} onChange={(e) => {
+                            setUsername(e.target.value)
+                        }}></input>
+                        <input className='password-input' type='text' required placeholder='Enter your password' value={password} onChange={(e) => {
+                            setPassword(e.target.value)
+                        }}></input>
+                        <Link to="/create-account" >New User? Create account</Link>
+                    </div>
+                    <div className="login-btn">
+                        <button type='submit'>Login</button>
+                    </div>
+                </form>
+            </div>
+            <div className="bottom-div">
+                <div className="left">
+                    <button onClick={() => {
+                        navigate('/')
+                    }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
+                    </button>
+                </div>
+                <div className="center">
+                    <button onClick={() => {
+                        navigate('/create-post')
+                    }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
+                    </button>
+                </div>
+                <div className="right">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Login
