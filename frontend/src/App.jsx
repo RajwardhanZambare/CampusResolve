@@ -3,6 +3,7 @@ import CreatePost from './pages/CreatePost'
 import Feed from './pages/Feed'
 import Home from './pages/Home'
 import Login from './pages/Login'
+import Profile from './pages/Profile'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import CreateAccount from './pages/CreateAccount'
@@ -36,6 +37,11 @@ const App = () => {
                 } />
                 <Route path='/login' element={<Login />} />
                 <Route path='/create-account' element={<CreateAccount />} />
+                <Route path='/profile' element={
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                } />
             </Routes>
         </BrowserRouter>
     )

@@ -13,27 +13,76 @@ app.use(express.json())//middelware
 const upload = multer({ storage: multer.memoryStorage() }) //middelware for images
 app.use(cors()) //middleware for cors policy
 
-app.post('/create-post', upload.single("image"), async (req, res) => {
-    // console.log(req.body)
-    // console.log(req.file)
-    const result = await uploadFile(req.file.buffer)
-    // console.log(result)
-    const post = await postModel.create({
-        image: result.url,
-        title: req.body.title,
-        caption: req.body.caption,
-        upvotes: 0,
-        comments: 0,
-        username: req.body.username,
-        profilePhoto: "https://ik.imagekit.io/rajwardhan/defaultPFP.jpg?updatedAt=1771751841705",
-        location: req.body.location || "cse"
-    })
+// app.post('/create-post', upload.single("image"), async (req, res) => {
+//     // console.log(req.body)
+//     // console.log(req.file)
+//     const result = await uploadFile(req.file.buffer)
+//     // console.log(result)
+//     const post = await postModel.create({
+//         image: result.url,
+//         title: req.body.title,
+//         caption: req.body.caption,
+//         upvotes: 0,
+//         comments: 0,
+//         username: req.body.username,
+//         profilePhoto: "https://ik.imagekit.io/rajwardhan/defaultPFP.jpg?updatedAt=1771751841705",
+//         location: req.body.location || "cse"
+//     })
 
-    return res.status(201).json({
-        message: "post created successfully",
-        post: post
-    })
+//     return res.status(201).json({
+//         message: "post created successfully",
+//         post: post
+//     })
+// })
+
+app.post('/create-post', upload.single("image"), async (req, res) => {
+    try {
+        const { title, caption, username, location } = req.body
+
+        // 1. Check user exists
+        const user = await userModel.findOne({ username })
+
+        if (!user) {
+            return res.status(400).json({
+                message: "User not found"
+            })
+        }
+
+        // 2. Upload image
+        let imageUrl = ""
+
+        if (req.file) {
+            const result = await uploadFile(req.file.buffer)
+            imageUrl = result.url
+        }
+
+        // 3. Create post
+        const post = await postModel.create({
+            image: imageUrl,
+            title,
+            caption,
+            upvotes: 0,        // MUST
+            comments: 0,       // MUST
+            username,
+            profilePhoto: user.profilePhoto, // ADD THIS BACK
+            location: location || "cse",
+            resolved: false
+        })
+
+        res.status(201).json({
+            message: "Post created successfully",
+            post
+        })
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({
+            message: "Error creating post"
+        })
+    }
 })
+
+
 app.get('/posts', async (req, res) => {
     const posts = await postModel.find() //returns array of all the posts
     // console.log(posts)
@@ -119,5 +168,29 @@ app.delete("/delete-post/:id", async (req, res) => {
     }
 
 });
+
+app.get('/profile/:username', async (req, res) => {
+    try {
+        const username = req.params.username
+
+        const user = await userModel.findOne({ username })
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" })
+        }
+
+        // IMPORTANT: match username (not userId)
+        const posts = await postModel.find({ username }).sort({ _id: -1 })
+
+        res.status(200).json({
+            user,
+            posts,
+            postCount: posts.length
+        })
+
+    } catch (err) {
+        res.status(500).json({ message: "Server error" })
+    }
+})
 
 export default app

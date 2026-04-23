@@ -1,17 +1,34 @@
 import mongoose from "mongoose"
 
+// const postSchema = new mongoose.Schema({
+//     image:String,
+//     title:String,
+//     caption:String,
+//     upvotes:Number,
+//     comments:Number,
+//     username:String,
+//     profilePhoto:String,
+//     location:{
+//         type:String,
+//         default: "cse"
+//     },
+//     resolved: {
+//         type: Boolean,
+//         default: false
+//     }
+// })
+
 const postSchema = new mongoose.Schema({
-    image:String,
-    title:String,
-    caption:String,
-    upvotes:Number,
-    comments:Number,
-    username:String,
-    profilePhoto:String,
-    location:{
-        type:String,
-        default: "cse"
+    image: String,
+    title: String,
+    caption: String,
+    upvotes: Number,
+    comments: Number,
+    username: {
+        type: String,
+        // unique: true
     },
+    location: String,
     resolved: {
         type: Boolean,
         default: false

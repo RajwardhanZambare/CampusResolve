@@ -12,7 +12,7 @@ const Post = (props) => {
         }
     }, [])
 
-    const [upVoteCount, setUpVoteCount] = useState(props.upvotes)
+    const [upVoteCount, setUpVoteCount] = useState(props.upvotes ?? 0)
     const [isUpvoted, setIsUpvoted] = useState(false)
     const [resolved, setResolved] = useState(props.resolved)
 
@@ -51,7 +51,7 @@ const Post = (props) => {
     return (
         <div className={`post ${resolved ? "resolved-post" : ""}`}>
             <div className="user-info">
-                <img src={props.profilePhoto}></img>
+                <img src={props.profilePhoto ?? "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg"}></img>
                 <h2>{props.username}</h2>
             </div>
             <div className="post-info">
@@ -73,7 +73,7 @@ const Post = (props) => {
                     <button id='comment-btn'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-more-icon lucide-message-square-more"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /><path d="M12 11h.01" /><path d="M16 11h.01" /><path d="M8 11h.01" /></svg>
                     </button>
-                    <p>{props.comments}</p>
+                    <p>{props.comments ?? 0}</p>
                 </div>
                 {username === "admin" && (
                     <>
