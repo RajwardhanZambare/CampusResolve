@@ -19,7 +19,7 @@ const CreateAccount = () => {
         // formData.append('username', username)
         // formData.append('password', password)
 
-        const response = await axios.post('http://localhost:3000/create-account', {
+        const response = await axios.post('https://campusresolve-td7e.onrender.com/create-account', {
             username: username,
             password: password
         })
