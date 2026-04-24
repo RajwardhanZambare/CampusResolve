@@ -14,7 +14,7 @@ const Login = () => {
     async function handleLogin(e){
         e.preventDefault()
 
-        const response = await axios.post('http://localhost:3000/login', {
+        const response = await axios.post('https://campusresolve-td7e.onrender.com/login', {
             username: username,
             password: password
         })
