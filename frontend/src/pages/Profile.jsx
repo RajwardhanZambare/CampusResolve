@@ -14,7 +14,7 @@ const Profile = () => {
     useEffect(() => {
         const username = localStorage.getItem("username")
 
-        axios.get(`http://localhost:3000/profile/${username}`)
+        axios.get(`https://campusresolve-td7e.onrender.com/profile/${username}`)
             .then(res => {
                 setUser(res.data.user)
                 setPosts(res.data.posts)
