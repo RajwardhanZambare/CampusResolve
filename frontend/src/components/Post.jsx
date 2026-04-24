@@ -24,19 +24,19 @@ const Post = (props) => {
 
         localStorage.setItem(`upvote-${props.id}`, newIsUpvoted)
 
-        await axios.patch(`http://localhost:3000/handle-upvote/${props.id}`, {
+        await axios.patch(`https://campusresolve-td7e.onrender.com/handle-upvote/${props.id}`, {
             upVotesCount: newCount
         })
     }
     async function resolvePost() {
-        const res = await axios.patch(`http://localhost:3000/resolve/${props.id}`)
+        const res = await axios.patch(`https://campusresolve-td7e.onrender.com/resolve/${props.id}`)
         setResolved(res.data.resolved)
     }
     async function deletePost() {
 
         try {
 
-            await axios.delete(`http://localhost:3000/delete-post/${props.id}`)
+            await axios.delete(`https://campusresolve-td7e.onrender.com/delete-post/${props.id}`)
 
             props.onDelete(props.id)
 
