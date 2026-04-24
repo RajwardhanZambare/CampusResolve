@@ -25,7 +25,7 @@ const CreatePost = () => {
         formData.append("profilePhoto", profilePhoto)
         formData.append("location", location)
 
-        const response = await axios.post('http://localhost:3000/create-post', formData)
+        const response = await axios.post('https://campusresolve-td7e.onrender.com/create-post', formData)
         console.log(response)
 
         if (response.status === 200 || response.status === 201) {
