@@ -9,7 +9,7 @@ const Feed = ({ department }) => {
 
     useEffect(() => {
         async function fetchPosts() {
-            const response = await axios.get('http://localhost:3000/posts')
+            const response = await axios.get('https://campusresolve-td7e.onrender.com/posts')
 
             let allPosts = response.data.posts
 
