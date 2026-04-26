@@ -97,32 +97,66 @@ app.patch('/handle-upvote/:key', async (req, res) => {
     const updatedPost = await postModel.findByIdAndUpdate(key, { upvotes: req.body.upVotesCount })
     res.status(200).json(updatedPost)
 })
+// app.post('/create-account', async (req, res) => {
+//     const username = req.body.username
+//     const password = req.body.password
+//     const profilePhoto = "https://ik.imagekit.io/rajwardhan/defaultPFP.jpg?updatedAt=1771751841705"
+
+//     const user = await userModel.create({
+//         username,
+//         password,
+//         profilePhoto
+//     })
+
+//     res.status(200).json(user)
+// })
+import bcrypt from 'bcrypt'
+
 app.post('/create-account', async (req, res) => {
-    const username = req.body.username
-    const password = req.body.password
-    const profilePhoto = "https://ik.imagekit.io/rajwardhan/defaultPFP.jpg?updatedAt=1771751841705"
+    const { username, password } = req.body
+
+    // Hash the password (10 = salt rounds, higher = slower but safer)
+    const hashedPassword = await bcrypt.hash(password, 10)
 
     const user = await userModel.create({
         username,
-        password,
-        profilePhoto
+        password: hashedPassword,  // store the hash, not plain text
+        profilePhoto: "https://ik.imagekit.io/rajwardhan/defaultPFP.jpg"
     })
 
-    res.status(200).json(user)
+    res.status(200).json({ message: "Account created" })
 })
-app.post('/login', async (req, res) => {
-    const username = req.body.username
-    const password = req.body.password
+// app.post('/login', async (req, res) => {
+//     const username = req.body.username
+//     const password = req.body.password
 
-    const user = await userModel.findOne({ username, password })
+//     const user = await userModel.findOne({ username, password })
+
+//     if (!user) {
+//         return (res.status(400).json({
+//             message: "invalid credentials!"
+//         }))
+//     }
+
+//     return res.status(200).json({ username: username })
+// })
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body
+
+    const user = await userModel.findOne({ username })
 
     if (!user) {
-        return (res.status(400).json({
-            message: "invalid credentials!"
-        }))
+        return res.status(400).json({ message: "Invalid credentials" })
     }
 
-    return res.status(200).json({ username: username })
+    // Compare entered password with stored hash
+    const isMatch = await bcrypt.compare(password, user.password)
+
+    if (!isMatch) {
+        return res.status(400).json({ message: "Invalid credentials" })
+    }
+
+    return res.status(200).json({ username })
 })
 app.patch("/resolve/:id", async (req, res) => {
 
