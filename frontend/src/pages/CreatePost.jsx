@@ -89,10 +89,16 @@ const CreatePost = () => {
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
                         >
-                            <option value="cse">CSE</option>
-                            <option value="electrical">Electrical</option>
-                            <option value="mechanical">Mechanical</option>
-                            <option value="entc">ENTC</option>
+                            <option value="cse department">CSE Department</option>
+                            <option value="electrical department">Electrical Department</option>
+                            <option value="entc department">ENTC Department</option>
+                            <option value="mechanical department">Mechanical Department</option>
+                            <option value="civil department">Civil Department</option>
+                            <option value="aiml department">AIML Department</option>
+                            <option value="aids department">AIDS Department</option>
+                            <option value="textile department">Textile Department</option>
+                            <option value="first year department">First Year Department</option>
+                            <option value="library">Library</option>
                         </select>
                         {error && <p className="error-msg">{error}</p>}
                     </div>
