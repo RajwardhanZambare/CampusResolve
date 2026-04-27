@@ -65,7 +65,7 @@ app.post('/create-post', upload.single("image"), async (req, res) => {
             comments: 0,       // MUST
             username,
             profilePhoto: user.profilePhoto, // ADD THIS BACK
-            location: location || "cse",
+            location: location || "cse department",
             resolved: false
         })
 
