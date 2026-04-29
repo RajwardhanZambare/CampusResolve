@@ -28,7 +28,10 @@ const postSchema = new mongoose.Schema({
         type: String,
         // unique: true
     },
-    location: String,
+    location: {
+        type: String,
+        default: "cse department",
+    },
     resolved: {
         type: Boolean,
         default: false
