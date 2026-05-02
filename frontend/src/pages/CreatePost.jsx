@@ -9,7 +9,7 @@ const CreatePost = () => {
     const [image, setImage] = useState()
     const [title, setTitle] = useState('')
     const [caption, setCaption] = useState('')
-    const [location, setLocation] = useState('cse')
+    const [location, setLocation] = useState('CSE department')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
